@@ -4,11 +4,11 @@
 
 1.  [Introducción](#introduccion)
 2.  [Arquitectura y Servicios Usados](#Arquitectura)
-    2.1.    [Key Vault](#azure-key-vault) 
-    2.2     [Azure Data Factory](#azure-data-factory)
-    2.3     [Azure Databricks](#azure-databricks)
-    2.4     [Sql Database](#azure-sql-database)
-    2.5     [Azure Data Lake](#azure-datalake)
+    - 2.1.    [Key Vault](#azure-key-vault) 
+    - 2.2     [Azure Data Factory](#azure-data-factory)
+    - 2.3     [Azure Databricks](#azure-databricks)
+    - 2.4     [Sql Database](#azure-sql-database)
+    - 2.5     [Azure Data Lake](#azure-datalake)
 
 3.  [Implementacion](#Implementacion)
 
