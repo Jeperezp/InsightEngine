@@ -54,7 +54,7 @@ El flujo de trabajo de datos se organiza a través de pipelines en ADF, que orqu
 
 ## Arquitectura y Servicios Usados
 
-![Arquitectura](./image/Arquitectura.svg)
+![Arquitectura](Image/Arquitectura.svg)
 
 ### Servicios Azure Usados
 
