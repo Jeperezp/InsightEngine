@@ -1,0 +1,90 @@
+table customers
+	lineageTag: 8b033328-e842-45de-9674-cf05e78c65dc
+
+	column customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0dc0d7ca-f6eb-4d74-9a70-73118251dd67
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_fname
+		dataType: string
+		lineageTag: f71f9a3c-60b3-45d2-ba0c-75c850632ad0
+		summarizeBy: none
+		sourceColumn: customer_fname
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_lname
+		dataType: string
+		lineageTag: 0afe5fb7-8f7f-43f3-b0fa-198aa5191b1d
+		summarizeBy: none
+		sourceColumn: customer_lname
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_email
+		dataType: string
+		lineageTag: 0582c637-e9e1-4c1d-a7af-59c4ebc20fc8
+		summarizeBy: none
+		sourceColumn: customer_email
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_password
+		dataType: string
+		lineageTag: 6e8e3d33-c1aa-418f-ab24-e00f477a5296
+		summarizeBy: none
+		sourceColumn: customer_password
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_street
+		dataType: string
+		lineageTag: bc3c6605-0ce2-44d6-8dd5-25b5a0df0438
+		summarizeBy: none
+		sourceColumn: customer_street
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: a4c5ac7b-7f54-4fc5-9d62-8992e712d523
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: 1ca517bd-247d-4fc1-9f0b-041dfcf25f86
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zipcode
+		dataType: string
+		lineageTag: 827e6678-9dd0-45ba-866b-e3078704d190
+		summarizeBy: none
+		sourceColumn: customer_zipcode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customers = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("server-datapath-jp.database.windows.net"),
+				    db_datapath = Origen{[Name="db_datapath"]}[Data],
+				    dbo_customers = db_datapath{[Schema="dbo",Item="customers"]}[Data]
+				in
+				    dbo_customers
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

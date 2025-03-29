@@ -1,0 +1,25 @@
+relationship 6f20fcdc-0436-449c-ef40-06879981eda8
+	fromColumn: orders.order_customer_id
+	toColumn: customers.customer_id
+
+relationship 29044f46-3e22-1856-257c-c70955f1770b
+	fromColumn: orders_items.order_item_order_id
+	toColumn: orders.order_id
+
+relationship 05874afa-cdb7-a9e2-f6e9-8b040e034250
+	fromColumn: orders_items.order_item_product_id
+	toColumn: products.product_id
+
+relationship a923b83f-4e52-fcee-e8c9-40f6c1489810
+	fromColumn: products.product_category_id
+	toColumn: Categories.category_id
+
+relationship 9f98c243-f8db-474c-aa71-4358bbf797ce
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Calendar.Date
+	toColumn: LocalDateTable_1fd6bf1f-9107-4803-ac36-9cccc090efd2.Date
+
+relationship f2189eed-cdd3-116b-fb19-0b95f296101f
+	fromColumn: orders.order_date
+	toColumn: Calendar.Date
+

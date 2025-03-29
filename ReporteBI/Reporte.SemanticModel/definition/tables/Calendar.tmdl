@@ -1,0 +1,40 @@
+table Calendar
+	lineageTag: d66fc607-5b9f-4789-9209-4b15ae64035a
+
+	column Date
+		lineageTag: 9cd6b566-e410-4ccc-84d1-d4e24db04aeb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variación
+			isDefault
+			relationship: 9f98c243-f8db-474c-aa71-4358bbf797ce
+			defaultHierarchy: LocalDateTable_1fd6bf1f-9107-4803-ac36-9cccc090efd2.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = ```
+			YEAR('Calendar'[Date]) 
+			```
+		formatString: 0
+		lineageTag: 76d4416c-60ab-44cc-885c-a568c4a3c155
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month = MONTH('Calendar'[Date])
+		formatString: 0
+		lineageTag: cb0e33ff-30f0-43ea-ad38-a3cad1b1b34f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendar = calculated
+		mode: import
+		source = ```
+				CALENDARAUTO() 
+				```
+
+	annotation PBI_Id = 02100cc9b33a4d4cb7391a8ec0085350
+

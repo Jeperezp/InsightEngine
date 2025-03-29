@@ -1,0 +1,28 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Categories","customers","orders","orders_items","products","Mesures"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Categories
+ref table customers
+ref table orders
+ref table orders_items
+ref table products
+ref table Calendar
+ref table DateTableTemplate_c05e36a1-57ce-42f9-9bf1-2208a7736590
+ref table LocalDateTable_1fd6bf1f-9107-4803-ac36-9cccc090efd2
+ref table Mesures
+
+ref cultureInfo es-ES
+

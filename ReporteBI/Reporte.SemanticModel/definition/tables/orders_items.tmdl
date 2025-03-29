@@ -1,0 +1,73 @@
+table orders_items
+	lineageTag: 3b6b6556-7058-4f0f-9eac-ca710b03490a
+
+	column order_item_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 24c31c87-fd0a-49f9-9d53-34774a2e729b
+		summarizeBy: sum
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: af84d13f-3658-445a-ac6c-dec49c8c9b24
+		summarizeBy: none
+		sourceColumn: order_item_order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3fa4a2d1-3017-43e5-899a-e90c451697e1
+		summarizeBy: none
+		sourceColumn: order_item_product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: cff96264-f790-4134-8c12-5894ee3011b3
+		summarizeBy: sum
+		sourceColumn: order_item_quantity
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_subtotal
+		dataType: double
+		lineageTag: 18842c4d-71d4-42c4-9c81-619bf1fc2d98
+		summarizeBy: sum
+		sourceColumn: order_item_subtotal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_item_product_price
+		dataType: double
+		lineageTag: 27eb5eff-d94a-4be5-9862-a12558df9728
+		summarizeBy: sum
+		sourceColumn: order_item_product_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition orders_items = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("server-datapath-jp.database.windows.net"),
+				    db_datapath = Origen{[Name="db_datapath"]}[Data],
+				    dbo_orders_items = db_datapath{[Schema="dbo",Item="orders_items"]}[Data]
+				in
+				    dbo_orders_items
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

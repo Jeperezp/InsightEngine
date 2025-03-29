@@ -1,0 +1,69 @@
+table products
+	lineageTag: d99c825c-c3eb-450a-a30e-9b16c638057a
+
+	column product_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 93edfca8-0928-40c3-89a2-6f86ca2c1c2a
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 324fa60a-0ad2-4291-8864-9bbd97035944
+		summarizeBy: none
+		sourceColumn: product_category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name
+		dataType: string
+		lineageTag: d82caf9e-688e-414c-a755-40d86f052e2a
+		summarizeBy: none
+		sourceColumn: product_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description
+		dataType: string
+		lineageTag: f9df8351-2827-4b79-a486-c6784e9844de
+		summarizeBy: none
+		sourceColumn: product_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_price
+		dataType: double
+		lineageTag: cbdc711b-0bed-474c-8423-58278e5554f8
+		summarizeBy: sum
+		sourceColumn: product_price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column product_image
+		dataType: string
+		lineageTag: bf9938a6-b319-4285-91ec-62542bea668f
+		summarizeBy: none
+		sourceColumn: product_image
+
+		annotation SummarizationSetBy = Automatic
+
+	partition products = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("server-datapath-jp.database.windows.net"),
+				    db_datapath = Origen{[Name="db_datapath"]}[Data],
+				    dbo_products = db_datapath{[Schema="dbo",Item="products"]}[Data]
+				in
+				    dbo_products
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

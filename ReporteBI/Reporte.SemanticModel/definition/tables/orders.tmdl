@@ -1,0 +1,53 @@
+table orders
+	lineageTag: b9a2a517-3f7a-4483-abf7-a149debf8a07
+
+	column order_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 11e45f43-462b-4103-a37e-cde41ac38c7e
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f057e248-c766-4aa2-b776-5c19b320ce83
+		summarizeBy: none
+		sourceColumn: order_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_customer_id
+		dataType: int64
+		formatString: 0
+		lineageTag: c5d4b12b-f7ad-4da5-a191-e57490c8f546
+		summarizeBy: none
+		sourceColumn: order_customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: d81e6b25-28af-4cb1-8517-7ba40f9a2bd1
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition orders = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("server-datapath-jp.database.windows.net"),
+				    db_datapath = Origen{[Name="db_datapath"]}[Data],
+				    dbo_orders = db_datapath{[Schema="dbo",Item="orders"]}[Data],
+				    #"Tipo cambiado" = Table.TransformColumnTypes(dbo_orders,{{"order_date", type datetime}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

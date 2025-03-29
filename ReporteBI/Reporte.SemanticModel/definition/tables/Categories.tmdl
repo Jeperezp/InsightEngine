@@ -1,0 +1,43 @@
+table Categories
+	lineageTag: e00ca072-e2a9-4ed1-ae6c-60b17082186a
+
+	column category_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 0854d0cf-2a59-4714-b1a8-7275bd76c451
+		summarizeBy: none
+		sourceColumn: category_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_department_id
+		dataType: int64
+		formatString: 0
+		lineageTag: de28b8eb-9888-4f6e-943b-da5f8e4e6bd7
+		summarizeBy: none
+		sourceColumn: category_department_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column category_name
+		dataType: string
+		lineageTag: 48f4638d-ce6c-4441-bf24-3fcf95790451
+		summarizeBy: none
+		sourceColumn: category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Categories = m
+		mode: import
+		source =
+				let
+				    Origen = Sql.Databases("server-datapath-jp.database.windows.net"),
+				    db_datapath = Origen{[Name="db_datapath"]}[Data],
+				    dbo_Categories = db_datapath{[Schema="dbo",Item="Categories"]}[Data]
+				in
+				    dbo_Categories
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
